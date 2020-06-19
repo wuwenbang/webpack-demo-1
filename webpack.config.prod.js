@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: './src/index.js',
     output: {
         // filename: 'index.js',
@@ -25,9 +25,16 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
-                //css-loader -> js 读取 css文件
-                //style-loader -> 将css文件放在html文件的style标签里  
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../',
+                        },
+                    },
+                    'css-loader',
+                ],
+
             },
             {
                 test: /\.scss$/i,
@@ -69,9 +76,9 @@ module.exports = {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: ['file-loader',]
             }
-
         ],
     },
+
     devServer: {
         contentBase: './dist',
     },
