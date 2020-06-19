@@ -25,7 +25,10 @@ module.exports = {
                 //style-loader -> 将css文件放在html文件的style标签里  
             },
         ],
-    }
+    },
+    devServer: {
+        contentBase: './dist',
+    },
 
 
 
