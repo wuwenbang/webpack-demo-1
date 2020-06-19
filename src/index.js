@@ -1,2 +1,2 @@
 import x from './x.js'
-console.log(x)
+import css from './x.css'
